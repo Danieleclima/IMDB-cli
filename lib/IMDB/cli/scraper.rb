@@ -5,21 +5,19 @@ require 'nokogiri'
 class MovieScraper 
 
 @@all = []
-@@movies = {}
 
   def scrape_popular_movies (index_url)
     doc = Nokogiri::HTML(open(index_url))
-    movies = []
     doc.css("tbody.lister-list td.titleColumn").each do |movie|
       new_movie = {}
       movie_title = movie.css("a").children.text
-      movie_year = movie.css("span").children.text
-      binding.pry
-      @@movies[:title] = movie_title
-      @@movies[:year] = movie_year 
-      @@all << @@movies
+      movie_year = movie.css("span.secondaryInfo").children.text[1..4]
+      new_movie[:title]= movie_title
+      new_movie[:year] = movie_year
+      @@all << new_movie
     end
-    movies
+    @@all
+    binding.pry
   end
   
 end
