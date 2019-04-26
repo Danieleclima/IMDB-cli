@@ -5,6 +5,7 @@ require 'nokogiri'
   def scrape_popular_movies (index_url)
     doc = Nokogiri::HTML(open(index_url))
     movies = []
+    binding.pry
     doc.css("tbody.lister-list").each do |movie|
       new_movie = {}
       movie_title = doc.css("td.titleColumn a").text
@@ -16,3 +17,5 @@ require 'nokogiri'
     end
     movies
   end
+  
+  scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
