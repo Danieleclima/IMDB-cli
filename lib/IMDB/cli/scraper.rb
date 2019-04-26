@@ -19,14 +19,16 @@ class MovieScraper
       @@all << new_movie
     end
     @@all
-    binding.pry
   end
   
   def scrape_movie_page (movie_page)
-    
+    doc = Nokogiri::HTML(open(movie_page))
+    movie_rating = doc.css("div.ratingValue span").children.text
+    binding.pry
   end
   
 end
 
  imdb = MovieScraper.new 
  imdb.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
+ imdb.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
