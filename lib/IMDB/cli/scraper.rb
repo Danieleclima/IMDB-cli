@@ -12,13 +12,16 @@ class MovieScraper
       new_movie = {}
       movie_title = movie.css("a").children.text
       movie_year = movie.css("span.secondaryInfo").children.text[1..4]
+      movie_url = movie.css("a").attribute("href").value
+      binding.pry
       new_movie[:title]= movie_title
       new_movie[:year] = movie_year
+      new_movie[:url] = "https://www.imdb.com" + movie.css("a").attribute("href").text
       @@all << new_movie
     end
     @@all
-    binding.pry
   end
+  
   
 end
 
