@@ -3,6 +3,7 @@ require 'pry'
 class Movie
   
   attr_accessor :title, :year, :url, :rating, :in_cinemas, :genre
+  
   @@all = []
   
   def initialize (movies_hash)
@@ -26,5 +27,8 @@ class Movie
     self
   end
   
+  def self.all
+    @@all
+  end
   
 end

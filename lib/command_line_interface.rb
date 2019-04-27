@@ -13,13 +13,13 @@ class CommandLineInterface
 
   def create_movies
     movie_array = MovieScraper.scrape_popular_movies(POPULAR_MOVIES)
-    Movie.create_from_collection(students_array)
+    Movie.create_from_collection(movie_array)
   end
 
-  def add_attributes_to_students
-    Student.all.each do |student|
-      attributes = Scraper.scrape_profile_page(BASE_PATH + student.profile_url)
-      student.add_student_attributes(attributes)
+  def add_attributes_to_movies
+    Movie.all.each do |movie|
+      attributes = Movie.scrape_movie_page(movie.url)
+      movie.add_movie_attributes(attributes)
     end
   end
 end
