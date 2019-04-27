@@ -33,12 +33,35 @@ class MovieScraper
         movie[:rating] = movie_rating 
         movie[:in_cinemas] = in_cinemas
         movie[:genre] = genre
-    binding.pry
       end
     end
+    @@all
+  end
+  
+  def self.extract_movie_urls
+    urls = []
+   @@all.collect do |movie|
+     urls << movie[:url]
+   end
+  return urls
+ end
+  
+  def self.add_attributes
+   extract_movie_urls.each do |page|
+     scrape_movie_page(page)
+  end
+  end
+  
+  def self.all
+    @@all
+  binding.pry
   end
   
 end
 
  MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
  MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
+ MovieScraper.extract_movie_urls
+ MovieScraper.add_attributes
+ MovieScraper.all
+ 
