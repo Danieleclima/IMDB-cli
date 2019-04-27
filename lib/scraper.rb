@@ -28,7 +28,11 @@ class MovieScraper
     size = doc.css("div.subtext a").children.length - 2 if doc.css("div.subtext a").children.length > 1 
     size = 0 if doc.css("div.subtext a").children.length <= 1
     genre = doc.css("div.subtext a").children[0..size].text.split /(?=[A-Z])/
-    
+    @@all.collect do |movie|
+      if movie[:url] == movie_page
+    binding.pry
+      end
+    end
   end
   
 end
