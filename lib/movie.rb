@@ -27,6 +27,10 @@ class Movie
     self
   end
   
+  def in_cinemas?
+    
+  end
+  
   def self.all
     @@all
   end
