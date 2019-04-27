@@ -18,7 +18,6 @@ class MovieScraper
       array << new_movie
     end
     array
-    binding.pry
   end
   
   def self.scrape_movie_page (movie_page)
@@ -41,7 +40,7 @@ class MovieScraper
   
 end
 
- MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
+ #MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
  #MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
  #MovieScraper.extract_movie_urls
  #MovieScraper.add_attributes
