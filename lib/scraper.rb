@@ -24,7 +24,13 @@ class MovieScraper
   def scrape_movie_page (movie_page)
     doc = Nokogiri::HTML(open(movie_page))
     movie_rating = doc.css("div.ratingValue span").children.text
-    binding.pry
+    in_cinemas = true if doc.css("div.winner-option")
+    genre = doc.css("div.subtext a").children.collect do |genre|
+      size = doc.css("div.subtext a").children.lenght
+      genre.text
+      binding.pry
+    end
+    
   end
   
 end
