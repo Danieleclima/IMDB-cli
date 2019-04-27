@@ -6,7 +6,7 @@ class MovieScraper
 
 @@all = []
   
-  def scrape_popular_movies (index_url)
+  def self.scrape_popular_movies (index_url)
     doc = Nokogiri::HTML(open(index_url))
     doc.css("tbody.lister-list td.titleColumn").each do |movie|
       new_movie = {}
@@ -21,7 +21,7 @@ class MovieScraper
     @@all
   end
   
-  def scrape_movie_page (movie_page)
+  def self.scrape_movie_page (movie_page)
     doc = Nokogiri::HTML(open(movie_page))
     movie_rating = doc.css("div.ratingValue span").children.text
     in_cinemas = true if doc.css("div.winner-option")
@@ -30,6 +30,9 @@ class MovieScraper
     genre = doc.css("div.subtext a").children[0..size].text.split /(?=[A-Z])/
     @@all.collect do |movie|
       if movie[:url] == movie_page
+        movie[:rating] = movie_rating 
+        movie[:in_cinemas] = in_cinemas
+        movie[:genre] = genre
     binding.pry
       end
     end
@@ -37,6 +40,5 @@ class MovieScraper
   
 end
 
- imdb = MovieScraper.new 
- imdb.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
- imdb.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
+ MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
+ MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
