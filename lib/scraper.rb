@@ -25,9 +25,10 @@ class MovieScraper
     doc = Nokogiri::HTML(open(movie_page))
     movie_rating = doc.css("div.ratingValue span").children.text
     in_cinemas = true if doc.css("div.winner-option")
-    size = doc.css("div.subtext a").children.length - 2
-    genre = doc.css("div.subtext a").children[0..2].text.split /(?=[A-Z])/
-    binding.pry
+    size = doc.css("div.subtext a").children.length - 2 if doc.css("div.subtext a").children.length > 1 
+    size = 0 if doc.css("div.subtext a").children.length <= 1
+    genre = doc.css("div.subtext a").children[0..size].text.split /(?=[A-Z])/
+    
   end
   
 end
