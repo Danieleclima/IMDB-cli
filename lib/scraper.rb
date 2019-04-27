@@ -13,7 +13,7 @@ class MovieScraper
       movie_title = movie.css("a").children.text
       movie_year = movie.css("span.secondaryInfo").children.text[1..4]
       movie_url = movie.css("a").attribute("href").value
-      new_movie[:title]= movie_title
+      new_movie[:title] = movie_title
       new_movie[:year] = movie_year
       new_movie[:url] = "https://www.imdb.com" + movie.css("a").attribute("href").text
       @@all << new_movie
@@ -38,30 +38,29 @@ class MovieScraper
     @@all
   end
   
-  def self.extract_movie_urls
-    urls = []
-   @@all.collect do |movie|
-     urls << movie[:url]
-   end
-  return urls
- end
+  #def self.extract_movie_urls
+    #urls = []
+   #@@all.collect do |movie|
+     #urls << movie[:url]
+   #end
+  #return urls
+ #end
   
-  def self.add_attributes
-   extract_movie_urls.each do |page|
-     scrape_movie_page(page)
-  end
-  end
+  #def self.add_attributes
+   #extract_movie_urls.each do |page|
+     #scrape_movie_page(page)
+  #end
+  #end
   
   def self.all
     @@all
-  binding.pry
   end
   
 end
 
- MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
- MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
- MovieScraper.extract_movie_urls
- MovieScraper.add_attributes
- MovieScraper.all
+ #MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
+ #MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
+ #MovieScraper.extract_movie_urls
+ #MovieScraper.add_attributes
+ #MovieScraper.all
  
