@@ -13,7 +13,7 @@ class CommandLineInterface
 
   def create_movies
     movie_array = MovieScraper.scrape_popular_movies(POPULAR_MOVIES)
-    Student.create_from_collection(students_array)
+    Movie.create_from_collection(students_array)
   end
 
   def add_attributes_to_students

@@ -3,11 +3,10 @@ require 'open-uri'
 require 'nokogiri' 
 
 class MovieScraper 
-
-@@all = []
   
   def self.scrape_popular_movies (index_url)
     doc = Nokogiri::HTML(open(index_url))
+    array = []
     doc.css("tbody.lister-list td.titleColumn").each do |movie|
       new_movie = {}
       movie_title = movie.css("a").children.text
@@ -16,9 +15,10 @@ class MovieScraper
       new_movie[:title] = movie_title
       new_movie[:year] = movie_year
       new_movie[:url] = "https://www.imdb.com" + movie.css("a").attribute("href").text
-      @@all << new_movie
+      array << new_movie
     end
-    @@all
+    array
+    binding.pry
   end
   
   def self.scrape_movie_page (movie_page)
@@ -41,7 +41,7 @@ class MovieScraper
   
 end
 
- #MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
+ MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
  #MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
  #MovieScraper.extract_movie_urls
  #MovieScraper.add_attributes
