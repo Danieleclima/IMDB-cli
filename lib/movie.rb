@@ -19,5 +19,12 @@ class Movie
     end
   end
   
+  def add_movie_attributes(attributes_hash)
+    attributes_hash.each do |key, value|
+      self.send(("#{key}="), value)
+    end
+    self
+  end
+  
   
 end

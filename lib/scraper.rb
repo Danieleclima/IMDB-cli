@@ -23,34 +23,17 @@ class MovieScraper
   
   def self.scrape_movie_page (movie_page)
     doc = Nokogiri::HTML(open(movie_page))
+    movie_attributes = {}
     movie_rating = doc.css("div.ratingValue span").children.text
     in_cinemas = true if doc.css("div.winner-option")
     size = doc.css("div.subtext a").children.length - 2 if doc.css("div.subtext a").children.length > 1 
     size = 0 if doc.css("div.subtext a").children.length <= 1
     genre = doc.css("div.subtext a").children[0..size].text.split /(?=[A-Z])/
-    @@all.collect do |movie|
-      if movie[:url] == movie_page
-        movie[:rating] = movie_rating 
-        movie[:in_cinemas] = in_cinemas
-        movie[:genre] = genre
-      end
-    end
-    @@all
+    movie_attributes[:rating] = movie_rating 
+    movie_attributes[:in_cinemas] = in_cinemas
+    movie_attributes[:genre] = genre
+    movie_attributes
   end
-  
-  #def self.extract_movie_urls
-    #urls = []
-   #@@all.collect do |movie|
-     #urls << movie[:url]
-   #end
-  #return urls
- #end
-  
-  #def self.add_attributes
-   #extract_movie_urls.each do |page|
-     #scrape_movie_page(page)
-  #end
-  #end
   
   def self.all
     @@all
