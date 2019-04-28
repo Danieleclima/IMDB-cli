@@ -26,10 +26,10 @@ class CommandLineInterface
   
   def contoller
     puts "Welcome to your movie guide!"
-    puts "To list all the movies sorted by popularity , enter 'list movies'."
+    puts "To list the most popular movies sorted by popularity , enter 'list movies'."
     puts "To list all of the movies currently showing at the cinema, enter 'what's on'."
     puts "To list all the movie genres, enter 'list genres'."
-    puts "To list all of the movies for a particular genre, enter ''."
+    puts "To list all of the movies for a particular genre, type the genre."
     puts "To quit, type 'exit'."
     puts "What would you like to do?"
   end
