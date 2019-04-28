@@ -7,7 +7,6 @@ class Movie
   @@all = []
   
   def initialize (movies_hash)
-    binding.pry
     movies_hash.each do |key, value|
     self.send(("#{key}="), value)
     end

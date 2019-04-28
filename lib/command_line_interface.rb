@@ -19,13 +19,21 @@ class CommandLineInterface
 
   def add_attributes_to_movies
     Movie.all.each do |movie|
-      attributes = Movie.scrape_movie_page(movie.url)
+      attributes = MovieScraper.scrape_movie_page(movie.url)
       movie.add_movie_attributes(attributes)
-      binding.pry
     end
   end
   
+  def contoller
+    puts "Welcome to your movie guide!"
+    puts "To list all the movies sorted by popularity , enter 'list movies'."
+    puts "To list all of the movies currently showing at the cinema, enter 'what's on'."
+    puts "To list all the movie genres, enter 'list genres'."
+    puts "To list all of the movies for a particular genre, enter ''."
+    puts "To quit, type 'exit'."
+    puts "What would you like to do?"
+  end
+  
+  
 end
 
-
-CommandLineInterface.add_movie_attributes
