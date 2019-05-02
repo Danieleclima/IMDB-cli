@@ -27,8 +27,8 @@ class Movie
   end
   
   def in_cinemas?
-    "This movie is now showing" if @in_cinemas == true
-    "This movie is not showing yet!" if @in_cinemas == false
+    "This movie is now showing" if @in_cinemas == "Showing"
+    "This movie is not showing yet!" if @in_cinemas == nil 
   end
   
   def self.all

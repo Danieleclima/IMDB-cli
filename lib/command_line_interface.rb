@@ -5,7 +5,7 @@ require 'nokogiri'
 
 class CommandLineInterface
   
-  POPULAR_MOVIES = "https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm/"
+  POPULAR_MOVIES = "https://www.imdb.com/chart/moviemeter"
   
   def run
     create_movies
@@ -37,6 +37,7 @@ class CommandLineInterface
     answer = gets.chomp
     list_movies if answer == 'list movies'
     whats_on if answer == "what's on"
+    list_genres if answer == "list genres"
   end
   
   def list_movies
