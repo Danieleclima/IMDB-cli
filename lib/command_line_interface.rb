@@ -54,5 +54,15 @@ class CommandLineInterface
    end
   end
   
+  def list_genres
+    genres = []
+    Movie.all.each do |movie|
+     genres.concat(movie.genre)
+    end
+    genres.uniq.each_with_index do |type, index|
+      puts "#{index + 1} #{type}"
+    end
+  end
+  
 end
 

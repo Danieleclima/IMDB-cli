@@ -27,7 +27,8 @@ class MovieScraper
     in_cinemas = true if doc.css("div.winner-option")
     size = doc.css("div.subtext a").children.length - 2 if doc.css("div.subtext a").children.length > 1 
     size = 0 if doc.css("div.subtext a").children.length <= 1
-    genre = doc.css("div.subtext a").children[0..size].text.split /(?=[A-Z])/
+    genre = doc.css("div.subtext a").children[0..size].text.gsub(/Sci-Fi/,'Fantasy').split /(?=[A-Z])/
+    binding.pry
     movie_attributes[:rating] = movie_rating 
     movie_attributes[:in_cinemas] = in_cinemas
     movie_attributes[:genre] = genre
@@ -41,7 +42,7 @@ class MovieScraper
 end
 
  #MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
- #MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154796/")
+ MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154756/")
  #MovieScraper.extract_movie_urls
  #MovieScraper.add_attributes
  #MovieScraper.all
