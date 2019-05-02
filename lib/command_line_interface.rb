@@ -36,12 +36,22 @@ class CommandLineInterface
     puts "What would you like to do?"
     answer = gets.chomp
     list_movies if answer == 'list movies'
+    whats_on if answer == "what's on"
   end
   
   def list_movies
     Movie.all.each_with_index do |movie, index|
       puts "#{index + 1}. #{movie.title} - #{movie.rating}"
     end
+  end
+  
+  def whats_on
+    list = Movie.all.select do |movie|
+      movie.in_cinemas == true 
+    end
+    list.each do |film|
+     puts film.title
+   end
   end
   
 end
