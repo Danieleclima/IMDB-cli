@@ -30,7 +30,7 @@ class CommandLineInterface
     puts "To list the most popular movies sorted by popularity , enter 'list movies'."
     puts "To list all of the movies currently showing at the cinema, enter 'what's on'."
     puts "To list all the movie genres, enter 'list genres'."
-    puts "To list all of the movies for a particular genre, type the genre."
+    puts "To list all of the movies for a particular genre, type the name of the genre."
     puts "To view a list of the top upcoming movies, type 'coming soon'"
     puts "To quit, type 'exit'."
     puts "What would you like to do?"
@@ -38,6 +38,7 @@ class CommandLineInterface
     list_movies if answer == 'list movies'
     whats_on if answer == "what's on"
     list_genres if answer == "list genres"
+    search_by_genre(answer) if answer != 'list movies'||"what's on"||"list genres"
   end
   
   def list_movies
@@ -63,6 +64,15 @@ class CommandLineInterface
     genres.uniq.each_with_index do |type, index|
       puts "#{index + 1} #{type}"
     end
+  end
+  
+  def search_by_genre (input)
+    list = Movie.all.select do |movie|
+      movie.genre.include? "#{input}" 
+    end
+    list.each do |film|
+     puts film.title
+   end
   end
   
 end
