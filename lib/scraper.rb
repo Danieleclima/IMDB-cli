@@ -24,7 +24,7 @@ class MovieScraper
     doc = Nokogiri::HTML(open(movie_page))
     movie_attributes = {}
     movie_rating = doc.css("div.ratingValue span").children.text
-    in_cinemas = true if doc.css("div.winner-option")
+    in_cinemas = true if doc.css("div.info.table-cell a").children.text.include?"Get Showtimes"
     size = doc.css("div.subtext a").children.length - 2 if doc.css("div.subtext a").children.length > 1 
     size = 0 if doc.css("div.subtext a").children.length <= 1
     genre = doc.css("div.subtext a").children[0..size].text.gsub(/Sci-Fi/,'Fantasy').split /(?=[A-Z])/
