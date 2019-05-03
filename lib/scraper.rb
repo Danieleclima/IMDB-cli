@@ -24,7 +24,13 @@ class MovieScraper
     doc = Nokogiri::HTML(open(movie_page))
     movie_attributes = {}
     movie_rating = doc.css("div.ratingValue span").children.text
-    in_cinemas = "Showing" if doc.css("div.info.table-cell a").children.text.include?"Get Showtimes"
+    if doc.css("div.info.table-cell a").children.text.include?"Get Showtimes"
+      in_cinemas = "Showing"
+    elsif doc.css("div.info.table-cell").children.text.include?"Release Date"
+      in_cinemas = "Coming Soon"
+    else
+      in_cinemas = "Not Showing"
+    end
     size = doc.css("div.subtext a").children.length - 2 if doc.css("div.subtext a").children.length > 1 
     size = 0 if doc.css("div.subtext a").children.length <= 1
     genre = doc.css("div.subtext a").children[0..size].text.gsub(/Sci-Fi/,'Fantasy').split /(?=[A-Z])/
@@ -41,7 +47,7 @@ class MovieScraper
 end
 
  #MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
- #MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154756/")
+ MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt3741700")
  #MovieScraper.extract_movie_urls
  #MovieScraper.add_attributes
  #MovieScraper.all
