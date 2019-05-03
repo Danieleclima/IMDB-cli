@@ -36,22 +36,26 @@ class CommandLineInterface
     puts "What would you like to do?"
     answer = gets.chomp
     movie_types = all_genres
-    if answer == 'list movies'
-      list_movies
-    elsif answer == "what's on"
-       whats_on
-    elsif answer == "list genres"
-      list_genres
-    elsif movie_types.include?(answer.capitalize)
-    puts "Here's a list with all the #{answer.capitalize} movies"
-     search_by_genre (answer)
-    else
     while answer =! "exit"
-      puts "What would you like to do?"
-      answer = gets.chomp
-    end
+      if answer == 'list movies'
+        list_movies
+      elsif answer == "what's on"
+        whats_on
+      elsif answer == "list genres"
+        list_genres
+      elsif movie_types.include?(answer.capitalize)
+        puts "Here's a list with all the #{answer.capitalize} movies"
+        search_by_genre (answer)
+      else
+        puts "What would you like to do?"
+        answer = gets.chomp
+      end
   end
 
+  end
+  
+  def controller (answer) 
+    
   end
   
   def list_movies
@@ -62,7 +66,7 @@ class CommandLineInterface
   
   def whats_on
     list = Movie.all.select do |movie|
-      movie.in_cinemas == true 
+      movie.in_cinemas == "Showing" 
     end
     list.each do |film|
      puts film.title
