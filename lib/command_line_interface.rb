@@ -50,12 +50,8 @@ class CommandLineInterface
         puts "What would you like to do?"
         answer = gets.chomp
       end
-  end
+    end
 
-  end
-  
-  def controller (answer) 
-    
   end
   
   def list_movies
