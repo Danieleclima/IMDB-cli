@@ -35,9 +35,12 @@ class CommandLineInterface
     puts "To quit, type 'exit'."
     puts "What would you like to do?"
     answer = gets.chomp
-    list_movies if answer == 'list movies'
-    whats_on if answer == "what's on"
-    list_genres if answer == "list genres"
+    if answer == 'list movies'
+      list_movies
+    elsif answer == "what's on"
+       whats_on
+    elsif answer == "list genres"
+      list_genres
     search_by_genre(answer) if answer != 'list movies'||"what's on"||"list genres"
   end
   
