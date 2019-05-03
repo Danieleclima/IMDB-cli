@@ -42,9 +42,11 @@ class CommandLineInterface
     elsif answer == "list genres"
       list_genres
     elsif answer == "exit"
-    
-    elsif list_genres.include?(answer)
+     puts "Thanks for using your personal movie guide!"
+    elsif list_genres.include?(answer.capitalize)
      search_by_genre (input)
+    else
+      puts "That's not a valid genre, type 'exit' to leave the guide!"
    end
   end
   
@@ -74,6 +76,7 @@ class CommandLineInterface
   end
   
   def search_by_genre (input)
+    input.capitalize!
     list = Movie.all.select do |movie|
       movie.genre.include? "#{input}" 
     end
