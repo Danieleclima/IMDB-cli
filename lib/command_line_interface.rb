@@ -35,6 +35,7 @@ class CommandLineInterface
     puts "To quit, type 'exit'."
     puts "What would you like to do?"
     answer = gets.chomp
+    movie_types = list_genres
     if answer == 'list movies'
       list_movies
     elsif answer == "what's on"
@@ -43,8 +44,9 @@ class CommandLineInterface
       list_genres
     elsif answer == "exit"
      puts "Thanks for using your personal movie guide!"
-    elsif list_genres.include?(answer.capitalize)
-     search_by_genre (input)
+    elsif movie_types.include?(answer.capitalize)
+    puts "Here's a list with all the #{answer.capitalize} movies"
+     search_by_genre (answer)
     else
       puts "That's not a valid genre, type 'exit' to leave the guide!"
    end
@@ -78,7 +80,7 @@ class CommandLineInterface
   def search_by_genre (input)
     input.capitalize!
     list = Movie.all.select do |movie|
-      movie.genre.include? "#{input}" 
+      movie.genre.include?(input) 
     end
     list.each do |film|
      puts film.title
