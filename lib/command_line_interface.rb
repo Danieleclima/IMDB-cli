@@ -29,7 +29,7 @@ class CommandLineInterface
     puts "Welcome to your movie guide!"
     puts "To list the most popular movies sorted by popularity , enter 'list movies'."
     puts "To list all of the movies currently showing at the cinema, enter 'what's on'."
-    puts "To list all the movie genres, enter 'list genres'."
+    puts "To list all the movie genres alphabetically, enter 'list genres'."
     puts "To list all of the movies for a particular genre, type the name of the genre."
     puts "To view a list of the top upcoming movies, type 'coming soon'"
     puts "To quit, type 'exit'."
@@ -46,10 +46,12 @@ class CommandLineInterface
     puts "Here's a list with all the #{answer.capitalize} movies"
      search_by_genre (answer)
     else
-      while answer =! "exit"
-      puts "That's not a valid genre, type 'exit' to leave the guide!"
+    while answer =! "exit"
+      puts "What would you like to do?"
+      answer = gets.chomp
     end
-   end
+  end
+
   end
   
   def list_movies
