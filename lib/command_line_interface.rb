@@ -41,7 +41,11 @@ class CommandLineInterface
        whats_on
     elsif answer == "list genres"
       list_genres
-    search_by_genre(answer) if answer != 'list movies'||"what's on"||"list genres"
+    elsif answer == "exit"
+    
+    elsif list_genres.include?(answer)
+     search_by_genre (input)
+   end
   end
   
   def list_movies
