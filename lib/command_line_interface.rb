@@ -35,7 +35,6 @@ class CommandLineInterface
     puts "To quit, type 'exit'."
     puts "What would you like to do?"
     answer = gets.chomp
-    movie_types = all_genres
     while answer =! "exit"
       if answer == 'list movies'
         list_movies
@@ -43,15 +42,14 @@ class CommandLineInterface
         whats_on
       elsif answer == "list genres"
         list_genres
-      elsif movie_types.include?(answer.capitalize)
+      elsif all_genres.include?(answer.capitalize)
         puts "Here's a list with all the #{answer.capitalize} movies"
         search_by_genre (answer)
       else
         puts "What would you like to do?"
-        answer = gets.chomp
       end
+      answer = gets.chomp
     end
-
   end
   
   def list_movies
