@@ -42,6 +42,9 @@ class CommandLineInterface
         whats_on
       elsif answer == "list genres"
         list_genres
+      elsif answer == "Coming Soon"
+      coming_soon
+      end
       elsif all_genres.include?(answer.capitalize)
         puts "Here's a list with all the #{answer.capitalize} movies:"
         search_by_genre (answer)
@@ -53,7 +56,7 @@ class CommandLineInterface
   
   def list_movies
     Movie.all.each_with_index do |movie, index|
-      puts "#{index + 1}. #{movie.title} - #{movie.rating}"
+      puts "#{index + 1}. #{movie.title} -- #{movie.rating}"
     end
   end
   
@@ -62,8 +65,17 @@ class CommandLineInterface
       movie.in_cinemas == "Showing" 
     end
     list.each do |film|
-     puts film.title
+     puts "#{film.title}. #{film.rating}"
    end
+  end
+  
+  def coming_soon
+    list = Movie.all.select do |movie|
+      movie.in_cinemas == "Coming Soon" 
+    end
+    list.each do |film|
+     puts "#{film.title}. #{film.rating}"
+   end 
   end
   
   def all_genres

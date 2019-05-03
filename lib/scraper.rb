@@ -47,8 +47,8 @@ class MovieScraper
 end
 
  #MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
- MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt3741700")
- #MovieScraper.extract_movie_urls
+ #MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt3741700")
+ #MovieScraper.extract_movie_urlscli
  #MovieScraper.add_attributes
  #MovieScraper.all
  
