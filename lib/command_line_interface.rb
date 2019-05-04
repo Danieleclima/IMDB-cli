@@ -69,6 +69,10 @@ class CommandLineInterface
    end
   end
   
+  def summary 
+    
+  end
+  
   def coming_soon
     list = Movie.all.select do |movie|
       movie.in_cinemas == "Coming Soon" 

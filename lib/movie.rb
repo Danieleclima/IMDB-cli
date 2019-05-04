@@ -2,7 +2,7 @@ require 'pry'
 
 class Movie
   
-  attr_accessor :title, :year, :url, :rating, :in_cinemas, :genre
+  attr_accessor :title, :year, :url, :rating, :in_cinemas, :genre, :summary
   
   @@all = []
   
