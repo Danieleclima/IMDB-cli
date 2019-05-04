@@ -28,6 +28,7 @@ class CommandLineInterface
   def controller
     puts "Welcome to your movie guide!"
     puts "To list the most popular movies sorted by popularity , enter 'list movies'."
+    puts "To view the summary of a particular movie, type its index number"
     puts "To list all of the movies currently showing at the cinema, enter 'what's on'."
     puts "To list all the movie genres alphabetically, enter 'list genres'."
     puts "To list all of the movies for a particular genre, type the name of the genre."
@@ -42,16 +43,16 @@ class CommandLineInterface
         whats_on
       elsif answer == "list genres"
         list_genres
-      elsif answer == "Coming Soon"
-      coming_soon
+      elsif answer == "coming soon"
+        coming_soon
       elsif answer.to_i != 0
-      show_summary (answer.to_i)
+        show_summary (answer.to_i)
       elsif all_genres.include?(answer.capitalize)
         puts "Here's a list with all the #{answer.capitalize} movies:"
         search_by_genre (answer)
       end
-      puts "What would you like to do?"
-      answer = gets.chomp
+        puts "What would you like to do?"
+        answer = gets.chomp
     end
     "Thanks for using this movie guide!!"
   end
@@ -72,7 +73,7 @@ class CommandLineInterface
   end
   
   def show_summary (number)
-  Movie.all[number - 1].summary.gsub(/\\n\s+/,'')
+   puts Movie.all[number - 1].summary
   end
   
   def coming_soon
