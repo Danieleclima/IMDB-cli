@@ -44,6 +44,8 @@ class CommandLineInterface
         list_genres
       elsif answer == "Coming Soon"
       coming_soon
+      elsif answer.to_i != 0
+      show_summary (answer.to_i)
       elsif all_genres.include?(answer.capitalize)
         puts "Here's a list with all the #{answer.capitalize} movies:"
         search_by_genre (answer)
@@ -69,8 +71,8 @@ class CommandLineInterface
    end
   end
   
-  def summary 
-    
+  def show_summary (number)
+  Movie.all[number - 1].summary.gsub(/\\n\s+/,'')
   end
   
   def coming_soon

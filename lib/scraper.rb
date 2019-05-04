@@ -32,7 +32,6 @@ class MovieScraper
       in_cinemas = "Not Showing"
     end
     summary = doc.css("div.summary_text").children.text
-    binding.pry
     size = doc.css("div.subtext a").children.length - 2 if doc.css("div.subtext a").children.length > 1 
     size = 0 if doc.css("div.subtext a").children.length <= 1
     genre = doc.css("div.subtext a").children[0..size].text.gsub(/Sci-Fi/,'Fantasy').split /(?=[A-Z])/
