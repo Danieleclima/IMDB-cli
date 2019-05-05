@@ -59,7 +59,10 @@ class CommandLineInterface
   
   def list_movies
     Movie.all.each_with_index do |movie, index|
-      puts "#{index + 1}. #{movie.title} -- #{movie.rating}"
+      if movie.title == ""
+       puts "#{index + 1}. #{movie.title} -- No rating yet -- #{movie.year}" 
+      else
+       puts "#{index + 1}. #{movie.title} -- #{movie.rating} -- #{movie.year}" 
     end
   end
   

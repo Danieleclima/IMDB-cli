@@ -28,6 +28,8 @@ class MovieScraper
       in_cinemas = "Showing"
     elsif doc.css("div.info.table-cell").children.text.include?"Release Date"
       in_cinemas = "Coming Soon"
+    elsif doc.css("div.subtext a").pop.children.text.split(" ")[2].to_i < Time.now.year
+      in_cinemas = "Not Showing"
     else
       in_cinemas = "Not Showing"
     end
@@ -49,7 +51,7 @@ class MovieScraper
 end
 
  #MovieScraper.scrape_popular_movies("https://www.imdb.com/chart/moviemeter?ref_=nv_mv_mpm")
- MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt4154796")
+ #MovieScraper.scrape_movie_page("https://www.imdb.com/title/tt6105098")
  #MovieScraper.extract_movie_urlscli
  #MovieScraper.add_attributes
  #MovieScraper.all
