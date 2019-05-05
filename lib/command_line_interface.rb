@@ -73,7 +73,8 @@ class CommandLineInterface
   end
   
   def show_summary (number)
-   puts Movie.all[number - 1].summary
+    puts "You have selected #{Movie.all[number - 1].title}"
+    puts Movie.all[number - 1].summary
   end
   
   def coming_soon
