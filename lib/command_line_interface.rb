@@ -37,6 +37,7 @@ class CommandLineInterface
     puts "What would you like to do?"
     answer = gets.chomp
     while answer != "exit"
+     counter = 0
       if answer == 'list movies'
         list_movies
       elsif answer == "what's on"
@@ -50,9 +51,17 @@ class CommandLineInterface
       elsif all_genres.include?(answer.capitalize)
         puts "Here's a list with all the #{answer.capitalize} movies:"
         search_by_genre (answer)
+      else
+        puts "That's not a valid answer"
       end
+      if counter > 0
+        puts "What would you like to do now?"
+        answer = gets.chomp
+      else
         puts "What would you like to do?"
         answer = gets.chomp
+      end
+        counter += 1
     end
     "Thanks for using this movie guide!!"
   end
@@ -62,7 +71,8 @@ class CommandLineInterface
       if movie.title == ""
        puts "#{index + 1}. #{movie.title} -- No rating yet -- #{movie.year}" 
       else
-       puts "#{index + 1}. #{movie.title} -- #{movie.rating} -- #{movie.year}" 
+       puts "#{index + 1}. #{movie.title} -- #{movie.rating} -- #{movie.year}"
+      end
     end
   end
   
@@ -115,4 +125,3 @@ class CommandLineInterface
   end
   
 end
-
