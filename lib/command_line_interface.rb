@@ -130,8 +130,12 @@ class CommandLineInterface
     list = Movie.all.select do |movie|
       movie.genre.include?(input) 
     end
-    list.each do |film|
-     puts film.title
+    list.each_with_index do |film, index|
+      if film.rating == ""
+        puts "#{index + 1}. #{film.title} -- No rating available"
+      else
+        puts "#{index + 1}. #{film.title} -- #{film.rating}"
+      end
    end
   end
   
