@@ -68,7 +68,7 @@ class CommandLineInterface
   
   def list_movies
     Movie.all.each_with_index do |movie, index|
-      if movie.title == ""
+      if movie.rating == ""
        puts "#{index + 1}. #{movie.title} -- No rating yet -- #{movie.year}" 
       else
        puts "#{index + 1}. #{movie.title} -- #{movie.rating} -- #{movie.year}"
@@ -77,11 +77,16 @@ class CommandLineInterface
   end
   
   def whats_on
+    puts "Here's a list with all the movies that are currently available on cinemas:"
     list = Movie.all.select do |movie|
       movie.in_cinemas == "Showing" 
     end
-    list.each do |film|
-     puts "#{film.title} -- #{film.rating}"
+    list.each_with_index do |film, index|
+      if film.rating == ""
+        puts "#{index + 1}. #{film.title} -- No rating available"
+      else
+        puts "#{index + 1}. #{film.title} -- #{film.rating}"
+      end
    end
   end
   
@@ -91,12 +96,17 @@ class CommandLineInterface
   end
   
   def coming_soon
+    puts "The following movies are about to be released, stay tuned!"
     list = Movie.all.select do |movie|
       movie.in_cinemas == "Coming Soon" 
     end
-    list.each do |film|
-     puts "#{film.title} -- #{film.rating}"
-   end 
+    list.each_with_index do |film, index|
+      if film.rating == ""
+        puts "#{index + 1}. #{film.title} -- No rating available"
+      else
+        puts "#{index + 1}. #{film.title} -- #{film.rating}"
+      end
+    end
   end
   
   def all_genres
@@ -108,6 +118,7 @@ class CommandLineInterface
   end
   
   def list_genres
+   puts "Here's a list with all the genres, enjoy!"  
     list = all_genres
     list.sort.each_with_index do |type, index|
       puts "#{index + 1} #{type}"
